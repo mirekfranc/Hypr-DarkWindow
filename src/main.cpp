@@ -61,22 +61,22 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle)
         g_WindowInverter.ToggleInvert(g_pCompositor->m_pLastWindow);
     });
 
-    HyprlandAPI::registerCallbackDynamic(
-        PHANDLE, "moveWindow",
-        [&](void* self, SCallbackInfo&, std::any data) {
-            g_WindowInverter.InvertIfMatches(static_cast<CWindow*>(std::any_cast<std::vector<void*>>(data)[0]));
-        }
-    );
+    // HyprlandAPI::registerCallbackDynamic(
+    //     PHANDLE, "moveWindow",
+    //     [&](void* self, SCallbackInfo&, std::any data) {
+    //         g_WindowInverter.InvertIfMatches(static_cast<CWindow*>(std::any_cast<std::vector<void*>>(data)[0]));
+    //     }
+    // );
 
-    for (const auto& event : { "openWindow", "fullscreen", "changeFloatingMode", "windowtitle" })
-    {
-        HyprlandAPI::registerCallbackDynamic(
-            PHANDLE, event,
-            [&](void* self, SCallbackInfo&, std::any data) {
-                g_WindowInverter.InvertIfMatches(std::any_cast<CWindow*>(data));
-            }
-        );
-    }
+    // for (const auto& event : { "openWindow", "fullscreen", "changeFloatingMode", "windowtitle" })
+    // {
+    //     HyprlandAPI::registerCallbackDynamic(
+    //         PHANDLE, event,
+    //         [&](void* self, SCallbackInfo&, std::any data) {
+    //             g_WindowInverter.InvertIfMatches(std::any_cast<CWindow*>(data));
+    //         }
+    //     );
+    // }
 
     g_pConfigManager->m_bForceReload = true;
 
